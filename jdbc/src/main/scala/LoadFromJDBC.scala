@@ -92,12 +92,12 @@ object LoadFromJDBC extends App {
 
   case class Iris(id: Int, petal_l: Double, petal_w: Double, sepal_l:  Double, sepal_w: Double, species: String)
 
-//  val rdd = new JdbcRDD(
-//    sc,
-//    () => { DriverManager.getConnection("jdbc:mysql://10.0.0.3:3306/test", "dseuser", "datastax") },
-//    "SELECT id, petal_l, petal_w, sepal_l, sepal_w, species value FROM iris WHERE ? <= id AND id <= ?",
-//    1, 150, 3,
-//    (r: ResultSet) => { Iris(r.getInt(1), r.getDouble(2), r.getDouble(3), r.getDouble(4), r.getDouble(5), r.getString(6)) } )
+  val rdd = new JdbcRDD(
+    sc,
+    () => { DriverManager.getConnection("jdbc:mysql://10.0.0.3:3306/test", "dseuser", "datastax") },
+    "SELECT id, petal_l, petal_w, sepal_l, sepal_w, species value FROM iris WHERE ? <= id AND id <= ?",
+    1, 150, 3,
+    (r: ResultSet) => { Iris(r.getInt(1), r.getDouble(2), r.getDouble(3), r.getDouble(4), r.getDouble(5), r.getString(6)) } )
 
   val url = "jdbc:mysql://10.0.0.3:3306/test"
   val prop = new java.util.Properties()
